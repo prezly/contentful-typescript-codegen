@@ -56,7 +56,7 @@ describe("renderContentType()", () => {
 
   it("works with miscellaneous field types", () => {
     expect(format(renderContentType(contentType, false))).toMatchInlineSnapshot(`
-            "export interface IMyContentTypeFields {
+            "export interface MyContentTypeFields {
               /** Symbol Field™ */
               symbolField?: string | undefined;
 
@@ -64,7 +64,7 @@ describe("renderContentType()", () => {
               arrayField: (\\"one\\" | \\"of\\" | \\"the\\" | \\"above\\")[];
             }
 
-            export interface IMyContentType extends Entry<IMyContentTypeFields> {
+            export interface MyContentType extends Entry<MyContentTypeFields> {
               sys: {
                 id: string,
                 type: string,
@@ -85,11 +85,11 @@ describe("renderContentType()", () => {
 
   it("supports descriptions", () => {
     expect(format(renderContentType(contentTypeWithDescription, false))).toMatchInlineSnapshot(`
-      "export interface IMyContentTypeFields {}
+      "export interface MyContentTypeFields {}
 
       /** This is a description */
 
-      export interface IMyContentType extends Entry<IMyContentTypeFields> {
+      export interface MyContentType extends Entry<MyContentTypeFields> {
         sys: {
           id: string,
           type: string,
@@ -110,7 +110,7 @@ describe("renderContentType()", () => {
 
   it("works with localized fields", () => {
     expect(format(renderContentType(contentType, true))).toMatchInlineSnapshot(`
-      "export interface IMyContentTypeFields {
+      "export interface MyContentTypeFields {
         /** Symbol Field™ */
         symbolField?: LocalizedField<string> | undefined;
 
@@ -118,7 +118,7 @@ describe("renderContentType()", () => {
         arrayField: LocalizedField<(\\"one\\" | \\"of\\" | \\"the\\" | \\"above\\")[]>;
       }
 
-      export interface IMyContentType extends Entry<IMyContentTypeFields> {
+      export interface MyContentType extends Entry<MyContentTypeFields> {
         sys: {
           id: string,
           type: string,

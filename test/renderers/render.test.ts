@@ -58,12 +58,12 @@ describe("render()", () => {
       import { Asset, Entry } from \\"contentful\\"
       import { Document } from \\"@contentful/rich-text-types\\"
 
-      export interface IMyContentTypeFields {
+      export interface MyContentTypeFields {
         /** Array field */
         arrayField: (\\"one\\" | \\"of\\" | \\"the\\" | \\"above\\")[]
       }
 
-      export interface IMyContentType extends Entry<IMyContentTypeFields> {
+      export interface MyContentType extends Entry<MyContentTypeFields> {
         sys: {
           id: string
           type: string
@@ -128,12 +128,12 @@ describe("render()", () => {
       import { Entry } from \\"contentful\\"
       import { Document } from \\"@contentful/rich-text-types\\"
 
-      export interface IMyContentTypeFields {
+      export interface MyContentTypeFields {
         /** Array field */
         arrayField: LocalizedField<(\\"one\\" | \\"of\\" | \\"the\\" | \\"above\\")[]>
       }
 
-      export interface IMyContentType extends Entry<IMyContentTypeFields> {
+      export interface MyContentType extends Entry<MyContentTypeFields> {
         sys: {
           id: string
           type: string
@@ -191,12 +191,12 @@ describe("render()", () => {
       import { Document } from \\"@contentful/rich-text-types\\"
 
       declare namespace Codegen {
-        export interface IMyContentTypeFields {
+        export interface MyContentTypeFields {
           /** Array field */
           arrayField: (\\"one\\" | \\"of\\" | \\"the\\" | \\"above\\")[]
         }
 
-        export interface IMyContentType extends Entry<IMyContentTypeFields> {
+        export interface MyContentType extends Entry<MyContentTypeFields> {
           sys: {
             id: string
             type: string
