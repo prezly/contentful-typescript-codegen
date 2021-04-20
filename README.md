@@ -6,15 +6,15 @@ Generate typings from your Contentful environment.
 - Locales (and your default locale) become string types.
 - Assets and Rich Text link to Contentful's types.
 
-At Intercom, we use this in our [marketing site] to increase developer confidence and productivity,
+At Prezly, we use this in our [marketing site] to increase developer confidence and productivity,
 ensure that breaking changes to our Content Types don't cause an outage, and because it's neat.
 
-[marketing site]: https://www.intercom.com
+[marketing site]: https://www.prezly.com
 
 ## Usage
 
 ```sh
-yarn add --dev contentful-typescript-codegen
+npm i -D @prezly/contentful-typescript-codegen
 ```
 
 Then, add the following to your `package.json`:
@@ -51,6 +51,32 @@ module.exports = function() {
 }
 ```
 
+Optionally, you can add a file called `getFieldOverrides.js` in the root of your project, which should export two functions:
+1. `getImports` which should return an array of import declarations (as strings) required for your overriden types.
+2. `getOverridenContentTypes` that returns an object of `OverridenContentTypes` type (see example), which will indicate which fields for which content types should be overriden with the type name you provided.
+
+Example:
+```js
+function getImports() {
+  return [
+    "import { SomeLibraryType } from '@some-library';"
+  ]
+}
+
+function getOverridenContentTypes() {
+  return {
+    'myContentTypeId': {
+      'overridenField': 'SomeLibraryType'
+    }
+  }
+}
+
+module.exports = {
+  getImports,
+  getOverridenContentTypes,
+}
+```
+
 ### Command line options
 
 ```
@@ -68,7 +94,7 @@ Options
 Here's an idea of what the output will look like for a Content Type:
 
 ```ts
-interface IBlogPostFields {
+interface BlogPostFields {
   /** Title */
   title: string
 
@@ -76,7 +102,7 @@ interface IBlogPostFields {
   body: Document
 
   /** Author link */
-  author: IAuthor
+  author: Author
 
   /** Image */
   image: Asset
@@ -94,7 +120,7 @@ interface IBlogPostFields {
 /**
  * A blog post.
  */
-export interface IBlogPost extends Entry<IBlogPostFields> {}
+export interface BlogPost extends Entry<BlogPostFields> {}
 ```
 
 You can see that a few things are handled for you:
