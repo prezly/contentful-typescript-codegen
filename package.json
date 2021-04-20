@@ -25,7 +25,10 @@
     "test:coverage": "jest --coverage",
     "test:ci": "jest --coverage --max-workers=2 --ci",
     "test:prod": "npm run lint && npm run test -- --no-cache",
-    "test:watch": "jest --coverage --watch"
+    "test:watch": "jest --coverage --watch",
+    "release": "npm run release:prepare && npm run release:publish",
+    "release:prepare": "npm run test && npm run build",
+    "release:publish": "np --no-2fa"
   },
   "typings": "dist/types/contentful-typescript-codegen.d.ts",
   "dependencies": {
@@ -54,6 +57,7 @@
     "jest-config": "^26.0.0",
     "lint-staged": "^9.2.1",
     "lodash.camelcase": "^4.3.0",
+    "np": "^7.4.0",
     "prettier": "1.x",
     "rimraf": "^2.6.3",
     "rollup": "^1.18.0",
